@@ -1,0 +1,68 @@
+<div class="users-layout">
+  <app-spinner *ngIf="spinnerService.visibility | async"></app-spinner>
+
+  <h2 *ngIf="error">{{ error }}</h2>
+
+  <div
+    *ngIf="!error"
+    class="users-table table-responsive{-sm|-md|-lg|-xl} text-nowrap"
+  >
+  <div class="btn-wrapper">
+  <div>
+    <input id="filter" class="btn btn-filter" type="text" placeholder="Search by gender..." [(ngModel)]="filterText">
+  </div>
+  <div>
+    <button
+      [disabled]="spinnerService.visibility | async"
+      class="btn btn-add-user"
+      (click)="onAddUser()"
+      id="addUser"
+    >
+      Add User
+    </button>
+  </div>
+  </div>
+    <table id="usersTable" class="table table-striped table-bordered">
+      <thead>
+        <tr>
+          <th scope="col th-lg" style="width: 5%">Id</th>
+          <th scope="col th-lg" style="width: 25%">Name</th>
+          <th scope="col th-lg" style="width: 40%">Email</th>
+          <th scope="col th-lg" style="width: 10%">Gender</th>
+          <th scope="col th-lg" style="width: 10%">Status</th>
+          <th scope="col th-lg" style="width: 10%">Action</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let user of users | filteredUsers:filterText ">
+          <td>{{ user.id }}</td>
+          <td>{{ user.name }} <a class="more-info" (click)="goToDetails(user.id)">More info...</a></td>
+          <td>{{ user.email }}</td>
+          <td>{{ user.gender }}</td>
+          <td>{{ user.status | lowercase }}</td>
+          <td class="buttons">
+            <button
+              [disabled]="spinnerService.visibility | async"
+              class="btn btn-edit"
+              (click)="onUpdateUser(user.id)"
+            >
+              Edit
+            </button>
+            <button
+              [disabled]="spinnerService.visibility | async"
+              class="btn btn-delete"
+              (click)="deleteUser(user.id!, user.name!)"
+              data-cy="deleteUser"
+            >
+              Delete
+            </button>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="buttons">
+      <button class="btn btn-default" (click)="prevPage()">Prev Page</button>
+      <button class="btn btn-default" (click)="nextPage()">Next Page</button>
+    </div>
+  </div>
+</div>

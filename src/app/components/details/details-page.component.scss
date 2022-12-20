@@ -1,0 +1,44 @@
+.wrapper {
+  width: 85%;
+  margin: 0 auto;
+}
+
+h2{
+  color:white;
+  text-align: center;
+  padding: 15px;
+}
+
+.photo-wrapper {
+  text-align: center;
+  margin: 30px;
+}
+
+.photo{
+  width: 18%;
+  height: 100%;
+  border-radius: 50%;
+}
+
+.information-wrapper {
+  text-align: center;
+}
+
+.user-info {
+  padding: 30px;
+  color: white;
+}
+
+button {
+  display: block;
+  margin: 0 auto;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  background-color: #00a457;
+  margin-bottom: 10px;
+  &:hover {
+    background-color: #0e6e41;
+  }
+  border-radius: 10px;
+}
